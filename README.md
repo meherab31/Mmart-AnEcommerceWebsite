@@ -24,7 +24,7 @@
             <p class="underline"></p>
             <h3>!!!!This project is currently under construction. Check back soon for exciting updates!!!!</h3>
             <h4>This is how the website looks</h4>
-            <img src="/ptype.png" alt="">
+            ![ptype](https://github.com/meherab31/Mmart-AnEcommerceWebsite/assets/58429543/10f79790-110b-4413-9762-d703018b1239)
         </div>
     </div>
 </body>
