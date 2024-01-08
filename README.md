@@ -8,7 +8,7 @@
 </p>
 
 ## About This Website
-This is a PHP Laravel Based Ecommerce Website
+<h2>This is a PHP Laravel Based Ecommerce Website</h2>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@ This is a PHP Laravel Based Ecommerce Website
     <div class="container">
         <div class="construction-icon">🚧</div>
         <div class="text">
-            <p><strong>Website Work Under Progress</strong></p>
+            <h2><strong>Website Work Under Progress</strong></h2>
             <p class="underline"></p>
             <p>!!!!This project is currently under construction. Check back soon for exciting updates!!!!</p>
         </div>
