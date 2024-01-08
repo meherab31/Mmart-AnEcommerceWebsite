@@ -22,7 +22,9 @@
         <div class="text">
             <h2><strong>Website Work is Under Progress</strong></h2>
             <p class="underline"></p>
-            <p>!!!!This project is currently under construction. Check back soon for exciting updates!!!!</p>
+            <h3>!!!!This project is currently under construction. Check back soon for exciting updates!!!!</h3>
+            <h4>This is how the website looks</h4>
+            <img src="/ptype.png" alt="">
         </div>
     </div>
 </body>
