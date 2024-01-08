@@ -20,7 +20,7 @@
     <div class="container">
         <div class="construction-icon">🚧</div>
         <div class="text">
-            <h2><strong>Website Work Under Progress</strong></h2>
+            <h2><strong>Website Work is Under Progress</strong></h2>
             <p class="underline"></p>
             <p>!!!!This project is currently under construction. Check back soon for exciting updates!!!!</p>
         </div>
