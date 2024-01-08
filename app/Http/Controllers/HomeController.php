@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         else
         {
-            return view('dashboard');
+            return view('home.userpage');
         }
 
     }
