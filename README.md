@@ -14,43 +14,7 @@ This is a PHP Laravel Based Ecommerce Website
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .construction-icon {
-            font-size: 48px;
-            color: #ff9800;
-        }
-
-        .text {
-            font-size: 18px;
-            color: #333;
-            margin-top: 10px;
-        }
-
-        .underline {
-            border-bottom: 2px dashed #ff9800;
-            display: inline-block;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="container">
