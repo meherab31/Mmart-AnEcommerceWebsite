@@ -22,7 +22,7 @@ This is a PHP Laravel Based Ecommerce Website
         <div class="text">
             <p><strong>Work Under Progress</strong></p>
             <p class="underline"></p>
-            <p>This project is currently under construction. Check back soon for exciting updates!</p>
+            <p>!!!!This project is currently under construction. Check back soon for exciting updates!!!!</p>
         </div>
     </div>
 </body>
