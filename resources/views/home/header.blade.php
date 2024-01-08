@@ -1,7 +1,7 @@
 <header class="header_section">
     <div class="container">
        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html"><img width="250" src="images/logo.png" alt="#" /></a>
+          <a class="navbar-brand" href="index.html"><img width="250" height="60px" src="images/logo.png" alt="#" /></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class=""> </span>
           </button>
@@ -34,18 +34,21 @@
 
                  @if (Route::has('login'))
                 @auth
-                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">{{ Auth::user()->name }} <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                        <li>
-                           <form method="POST" action="{{ route('logout') }}">
-                              @csrf
-                              <input class="btn mx-2 py-2" type="submit" value="Logout">
-                           </form>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <li class="text-center">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="btn btn-danger btn btn-block" type="submit">Logout</button>
+                            </form>
                         </li>
-                        <li><a href={{ route('profile.show') }}>Profile</a></li>
-                     </ul>
-                  </li>
+                        <li class="text-center"><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
+                    </ul>
+                </li>
+
                 @else
                     <li class="nav-item mx-2">
                        <a class="btn btn-primary " href="{{ route('login') }}">Log in</a>
