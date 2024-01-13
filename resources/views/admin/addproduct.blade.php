@@ -7,34 +7,12 @@
             text-align: center;
             padding-top: 20px;
         }
-        .h2_font{
-            font-size: 40px;
+        .h1_font{
+            font-size: 45px;
             padding-bottom: 40px;
         }
-        .center {
-            margin: auto;
-            width: 50%;
-            margin-top: 30px;
-        }
 
-        .center table {
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        .center table, .center th, .center td {
-            border: 1px solid rgb(44, 168, 240);
-        }
-
-        .center th, .center td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        .center th {
-            background-color: rgb(0, 11, 109);
-            color: white;
-        }
     </style>
   </head>
   <body>
@@ -49,7 +27,36 @@
      <div class="main-panel">
        <div class="content-wrapper" >
         <div class="div_center">
-           <h2 class="h2_font">aadda</h2>
+           <h2 class="h2_font">Add Product</h2>
+            <div>
+                <label>Product Title</label>
+                <input type="text" name="title" placeholder="Write the Product Title" >
+            </div>
+            <div>
+                <label>Prodcut Title</label>
+                <input type="text" name="description" placeholder="Write the Product Title" >
+            </div>
+            <div>
+                <label>Prodcut Title</label>
+                <input type="text" name="quantity" placeholder="Write the Product Title" >
+            </div>
+            <div>
+                <label>Prodcut Title</label>
+                <input type="text" name="category" placeholder="Write the Product Title" >
+            </div>
+            <div>
+                <label>Prodcut Title</label>
+                <input type="text" name="price" placeholder="Write the Product Title" >
+            </div>
+            <div>
+                <label>Prodcut Title</label>
+                <input type="text" name="discount_price" placeholder="Write the Product Title" >
+            </div>
+            <div>
+                <label>Prodcut Title</label>
+                <input type="text" name="image" placeholder="Write the Product Title" >
+            </div>
+
         </div>
        </div>
      </div>
