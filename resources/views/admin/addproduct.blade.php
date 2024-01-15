@@ -30,10 +30,8 @@
             margin-bottom: 10px;
         }
         .submit{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+
+            text-align: center;
         }
     </style>
   </head>
@@ -49,43 +47,55 @@
      <div class="main-panel">
        <div class="content-wrapper" >
         <div class="div_center">
-           <h2 class="h2_font">Add Product</h2>
-           <div class="form-container">
-                <div>
-                    <label>Product Title</label>
-                    <input type="text" name="title" placeholder="Write the Product Title">
-                </div>
-                <div>
-                    <label>Prodcut Description</label>
-                    <input type="text" name="description" placeholder="Write the Product Description">
-                </div>
-                <div>
-                    <label>Prodcut Quantity</label>
-                    <input type="number" name="quantity" min="0" placeholder="Place Product Quantity">
-                </div>
-                <div>
-                    <label>Prodcut Category</label>
-                    <select>
-                        <option value="" selected="">Add a category</option>
-                        <option>Shirt</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Prodcut Price</label>
-                    <input type="number" name="price" placeholder="Place the product price">
-                </div>
-                <div>
-                    <label>Prodcut Discount price</label>
-                    <input type="number" name="discount_price" placeholder="Write the Discounted Product Price">
-                </div>
-                <div>
-                    <label>Prodcut Image</label>
-                    <input type="text" name="image" placeholder="Upload the Product Image">
-                </div>
-                <div class="submit">
-                    <input type="submit">
-                </div>
+            @if (session('addedproduct'))
+            <div class="alert alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {{ session('addedproduct') }}
             </div>
+            @endif
+           <h2 class="h2_font">Add Product</h2>
+           <form action="{{ url('/product_added') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+                <div class="form-container">
+                    <div>
+                        <label>Product Title</label>
+                        <input required type="text" name="title" placeholder="Write the Product Title">
+                    </div>
+                    <div>
+                        <label>Product Description</label>
+                        <input required type="text" name="description" placeholder="Write the Product Description">
+                    </div>
+                    <div>
+                        <label>Product Quantity</label>
+                        <input required type="number" name="quantity" min="0" placeholder="Place Product Quantity">
+                    </div>
+                    <div>
+                        <label>Product Category</label>
+                        <select  required name="category">
+                            <option value="" selected="">Add a category</option>
+                            @foreach ($category as $category)
+                                <option value="{{ $category->category_name}}">{{ $category->category_name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                    <div>
+                        <label>Product Price</label>
+                        <input required type="number" name="price" placeholder="Place the product price">
+                    </div>
+                    <div>
+                        <label>Product Discount price</label>
+                        <input type="number" name="discount_price" placeholder="Write the Discounted Product Price">
+                    </div>
+                    <div>
+                        <label>Product Image</label>
+                        <input required type="file" name="image" placeholder="Upload the Product Image">
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Add Product" class="btn btn-primary">
+                    </div>
+                </div>
+          </form>
         </div>
        </div>
      </div>
