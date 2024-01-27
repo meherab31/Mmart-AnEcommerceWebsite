@@ -22,4 +22,5 @@ Route::post('/add_category', [AdminController::class, 'add_category']);
 Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
 Route::get('/add_product', [AdminController::class, 'add_product']);
 Route::post('/product_added', [AdminController::class, 'product_added']);
+Route::get('/show_product', [AdminController::class, 'show_product']);
 });

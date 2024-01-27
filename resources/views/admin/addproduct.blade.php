@@ -92,7 +92,7 @@
                         <input required type="file" name="image" placeholder="Upload the Product Image">
                     </div>
                     <div class="submit">
-                        <input type="submit" value="Add Product" class="btn btn-primary">
+                        <input onclick="return confirm('Reconfirm Submission?')" type="submit" value="Add Product" class="btn btn-primary">
                     </div>
                 </div>
           </form>
