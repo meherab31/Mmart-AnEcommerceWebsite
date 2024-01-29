@@ -47,6 +47,12 @@
      <div class="main-panel">
             <div class="content-wrapper" >
                 <div class="div_center">
+                    @if (session('delete'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        {{ session('delete') }}
+                    </div>
+                    @endif
                     <h1 class="h1">Show All Products</h1>
                     <table class="tab_center">
                         <tr class="tr_bg">
@@ -57,6 +63,8 @@
                             <th> Price </th>
                             <th> Discount Price </th>
                             <th> Product Image </th>
+                            <th> Edit </th>
+                            <th> Delete </th>
                         </tr>
                         @foreach ($product as $products )
                         <tr>
@@ -68,6 +76,12 @@
                             <td>{{ $products->discount_price }} </td>
                             <td>
                             <img class="img_size" src="/product/{{ $products->image }}">
+                            </td>
+                            <td>
+                                <a  role="button" class="btn btn-outline-warning" href="{{ url('edit_product', $products->id) }}">Edit</a>
+                            </td>
+                            <td>
+                                <a  onclick="return confirm('Are you sure you want to delete this?')" role="button" class="btn btn-outline-danger" href="{{ url('delete_product', $products->id) }}">Delete</a>
                             </td>
                         </tr>
                         @endforeach

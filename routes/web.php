@@ -21,6 +21,9 @@ Route::get('/view_category', [AdminController::class, 'view_category']);
 Route::post('/add_category', [AdminController::class, 'add_category']);
 Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
 Route::get('/add_product', [AdminController::class, 'add_product']);
-Route::post('/product_added', [AdminController::class, 'product_added']);
+Route::post('/product_added', [AdminController::class, 'product_added']); //product added from add product
 Route::get('/show_product', [AdminController::class, 'show_product']);
+Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
+Route::get('/edit_product/{id}', [AdminController::class, 'edit_product']);
+Route::post('/product_edited/{id}', [AdminController::class, 'product_edited']); //product edit  from edit product
 });
