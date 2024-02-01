@@ -28,13 +28,33 @@
                    <h5>
                     {{ $products->title }}
                    </h5>
-                   <h6>
+                   <br>
+                   @if ($products->discount_price!=null)
+                   <h6 style="color:red">
+                    ${{ $products->discount_price }}
+                   </h6>
+
+                   <h6 style="text-decoration: line-through; color:rgba(4, 34, 0, 0.829)">
                     ${{ $products->price }}
                    </h6>
+
+                   @else
+                   <h6 style="color:rgb(4, 34, 0)">
+                    ${{ $products->price }}
+                   </h6>
+                   @endif
                 </div>
              </div>
           </div>
 
         @endforeach
     </div>
+    <span style="padding-top: 20px;">
+
+        {!!$product->withQueryString()->links('pagination::bootstrap-5')!!}
+
+    </span>
+
+
  </section>
+

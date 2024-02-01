@@ -20,13 +20,14 @@ class HomeController extends Controller
 
         else
         {
-            return view('home.userpage');
+            $product=Product::paginate(3);
+            return view('home.userpage', compact('product'));
         }
 
     }
 
     public function index(){
-        $product=Product::all();
+        $product=Product::paginate(6);
         return view('home.userpage', compact('product'));
     }
 }
