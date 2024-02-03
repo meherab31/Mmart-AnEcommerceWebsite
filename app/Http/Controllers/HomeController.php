@@ -20,7 +20,7 @@ class HomeController extends Controller
 
         else
         {
-            $product=Product::paginate(3);
+            $product=Product::paginate(6);
             return view('home.userpage', compact('product'));
         }
 
@@ -30,4 +30,10 @@ class HomeController extends Controller
         $product=Product::paginate(6);
         return view('home.userpage', compact('product'));
     }
+
+    public function product_details($id){
+        $product=Product::find($id);
+        return view('home.productdetails', compact('product'));
+    }
+
 }

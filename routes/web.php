@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
+
+//
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,4 +29,6 @@ Route::get('/show_product', [AdminController::class, 'show_product']);
 Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 Route::get('/edit_product/{id}', [AdminController::class, 'edit_product']);
 Route::post('/product_edited/{id}', [AdminController::class, 'product_edited']); //product edit  from edit product
+
+
 });
