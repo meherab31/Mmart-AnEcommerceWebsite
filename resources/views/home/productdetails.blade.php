@@ -55,7 +55,24 @@
 
                     <!-- Add to Cart and Buy Now buttons -->
                     <div class="btn-container mt-3">
-                        <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                        <div>
+                            <form action="{{ url('add_cart', $product->id) }}" method="POST">
+                                @csrf
+                                    <div class="row">
+                                        <div class="col-md-4" >
+
+                                            <input type="number" name="quantity" value="1" min="1" style="width: 60%" >
+
+                                        </div>
+
+                                        <div class="col-md-4" style="width: 50%" >
+
+                                            <input onclick="addToCart()" type="submit" value="Add to Cart" >
+
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
                         <button class="btn btn-success" onclick="buyNow()">Buy Now</button>
                     </div>
                 </div>
@@ -75,12 +92,10 @@
     <!-- Add to Cart and Buy Now functionality -->
     <script>
         function addToCart() {
-            // Add your logic to handle adding the product to the cart
             alert('Product added to cart!');
         }
 
         function buyNow() {
-            // Add your logic to handle the "Buy Now" functionality
             alert('Redirecting to checkout for immediate purchase!');
         }
     </script>
