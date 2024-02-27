@@ -47,9 +47,6 @@
       @include('home.subscriber')
       <!-- end subscribe section -->
 
-      <!-- client section -->
-      @include('home.client')
-      <!-- end client section -->
       <!-- footer start -->
       @include('home.footer')
       <!-- footer end -->
