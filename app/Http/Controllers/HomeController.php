@@ -79,5 +79,19 @@ class HomeController extends Controller
         }
     }
 
+    public function show_cart(){
+        //don't need to  if(Auth::id()) as it's auto check login by jetstream
 
+        $userid=Auth::user()->id;
+        $cart=cart::where('user_id', '=', $userid)->get(); //checking logged user's cart
+        return view('home.showcart', compact('cart'));
+    }
+
+    public function remove_cartitem($id){
+
+
+        $cart=cart::find($id);
+        $cart->delete();
+        return redirect()->back();
+    }
 }
