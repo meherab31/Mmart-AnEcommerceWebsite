@@ -113,10 +113,10 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-row justify-content-between">
-                <h4 class="card-title mb-1">Open Projects</h4>
+                <h4 class="card-title mb-1">Delivery Status</h4>
                 <p class="text-muted mb-1">Your data status</p>
               </div>
-              <div class="row">
+              {{-- <div class="row">
                 <div class="col-12">
                   <div class="preview-list">
                     <div class="preview-item border-bottom">
@@ -206,7 +206,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -517,7 +517,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 col-xl-4 grid-margin stretch-card">
+        {{-- <div class="col-md-12 col-xl-4 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">To do list</h4>
@@ -567,7 +567,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="row">
         <div class="col-12">
           <div class="card">
