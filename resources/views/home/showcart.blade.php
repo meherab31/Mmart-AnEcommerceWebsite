@@ -128,7 +128,18 @@
                     <h3>
                         Total Price : ${{ $totalprice }}
                     </h3>
-                    <button class="action-btn">Proceed to Checkout</button>
+                    <!-- Proceed to Checkout Button -->
+                    <button id="proceedCheckoutBtn" class="action-btn">Proceed to Checkout</button>
+                    <!-- Payment Options (Initially Hidden) -->
+                    <div id="paymentOptions" style="display: none;">
+                        <h3>Select Payment Method:</h3>
+                        <label for="cashOnDelivery">Cash on Delivery</label>
+                        <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash_pay">
+                        <label for="cardPayment">Card Payment</label>
+                        <input type="radio" id="cardPayment" name="paymentMethod" value="card_pay">
+                        <br>
+                        <button id="confirmPaymentBtn" class="action-btn">Confirm Payment</button>
+                    </div>
                 </div>
             </div>
             <!--Cart Body Ends-->
@@ -145,6 +156,26 @@
             <script src="home/js/bootstrap.js"></script>
             <!-- custom js -->
             <script src="home/js/custom.js"></script>
+            <script src="home/js/jquery-3.4.1.min.js"></script>
 
+            <script>
+                $(document).ready(function() {
+                    // Proceed to Checkout Button Click Event
+                    $('#proceedCheckoutBtn').click(function() {
+                        $('#paymentOptions').slideDown();
+                    });
+
+                    // Confirm Payment Button Click Event
+                    $('#confirmPaymentBtn').click(function() {
+                        var selectedPayment = $('input[name="paymentMethod"]:checked').val();
+                        if (selectedPayment) {
+                            // Redirect based on selected payment method
+                            window.location.href = selectedPayment;
+                        } else {
+                            alert('Please select a payment method.');
+                        }
+                    });
+                });
+            </script>
    </body>
 </html>

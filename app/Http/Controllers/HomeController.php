@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -71,7 +72,7 @@ class HomeController extends Controller
 
             $cart->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('cart', 'Product added to the cart');
         }
         else {
 
@@ -94,4 +95,47 @@ class HomeController extends Controller
         $cart->delete();
         return redirect()->back();
     }
+
+    public function cash_pay(){
+        $userid = Auth::user()->id;
+        $cartItems = cart::where('user_id', $userid)->get(); // Get all cart items for the user
+
+        // Generate a unique track ID
+        $track_id = uniqid('tr');
+
+        foreach($cartItems as $cartItem){
+            $order = new order;
+
+            // Getting user data
+            $order->user_id = $userid;
+            $order->name = Auth::user()->name;
+            $order->email = Auth::user()->email;
+            $order->phone = Auth::user()->phone;
+            $order->address = Auth::user()->address;
+
+            // Getting product data
+            $order->product_id = $cartItem->product_id;
+            $order->product_title = $cartItem->product_title;
+            $order->price = $cartItem->price;
+            $order->quantity = $cartItem->quantity;
+            $order->image = $cartItem->image;
+
+            // Setting track ID for all items in this order
+            $order->track_id = $track_id;
+
+            // Status
+            $order->payment_status = 'cash on delivery';
+            $order->delivery_status = 'processing';
+
+            // Save the order
+            $order->save();
+
+            // Remove cart item
+            $cartItem->delete();
+        }
+
+        return view('home.thankyou', ['track_id' => $track_id]);
+    }
+
+
 }

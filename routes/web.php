@@ -32,5 +32,6 @@ Route::post('/product_edited/{id}', [AdminController::class, 'product_edited']);
 Route::post('/add_cart/{id}', [HomeController::class, 'add_cart']);
 Route::get('/show_cart', [HomeController::class, 'show_cart']);
 Route::get('/remove_cartitem/{id}', [HomeController::class, 'remove_cartitem']);
-
+Route::get('/cash_pay', [HomeController::class, 'cash_pay']);
+Route::get('/card_pay', [HomeController::class, 'card_pay']);
 });

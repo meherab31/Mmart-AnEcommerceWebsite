@@ -22,6 +22,15 @@
       <link href="home/css/responsive.css" rel="stylesheet" />
    </head>
    <body>
+        @if(Session::has('cart'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+            {{ Session::get('cart') }}
+            <button type="button" class="close" onclick="hideFlashMessage()">
+                <span>&times;</span>
+            </button>
+        </div>
+        @endif
+
       <div class="hero_area">
          <!-- header section strats -->
         @include('home.header')
@@ -60,4 +69,20 @@
       <!-- custom js -->
       <script src="home/js/custom.js"></script>
    </body>
+
+
+    <!-- JavaScript to auto-hide the flash message after 2 seconds -->
+    <script>
+        // Function to hide the flash message
+        function hideFlashMessage() {
+            var flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                flashMessage.style.display = 'none';
+            }
+        }
+
+        // Auto-hide the flash message after 2 seconds
+        setTimeout(hideFlashMessage, 2000);
+    </script>
+
 </html>
