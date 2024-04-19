@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -137,5 +139,11 @@ class HomeController extends Controller
         return view('home.thankyou', ['track_id' => $track_id]);
     }
 
-
+    // Function to handle Stripe payment
+    public function stripePayment(Request $request)
+    {
+        // Retrieve the total price from the query parameters
+        $totalPrice = $request->query('totalprice');
+        return view('home.stripe', compact('totalPrice'));
+    }
 }

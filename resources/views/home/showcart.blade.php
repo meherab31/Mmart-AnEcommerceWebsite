@@ -136,7 +136,7 @@
                         <label for="cashOnDelivery">Cash on Delivery</label>
                         <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cash_pay">
                         <label for="cardPayment">Card Payment</label>
-                        <input type="radio" id="cardPayment" name="paymentMethod" value="card_pay">
+                        <input type="radio" id="cardPayment" name="paymentMethod" value="stripe_payment">
                         <br>
                         <button id="confirmPaymentBtn" class="action-btn">Confirm Payment</button>
                     </div>
@@ -168,9 +168,11 @@
                     // Confirm Payment Button Click Event
                     $('#confirmPaymentBtn').click(function() {
                         var selectedPayment = $('input[name="paymentMethod"]:checked').val();
-                        if (selectedPayment) {
-                            // Redirect based on selected payment method
-                            window.location.href = selectedPayment;
+                        if (selectedPayment === 'stripe_payment') {
+                            // Get the total price
+                            var totalPrice = <?php echo $totalprice; ?>;
+                            // Redirect to stripe_payment route with total price as query parameter
+                            window.location.href = selectedPayment + '?totalprice=' + totalPrice;
                         } else {
                             alert('Please select a payment method.');
                         }
