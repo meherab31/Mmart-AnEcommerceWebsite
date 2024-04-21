@@ -10,6 +10,8 @@ use App\Models\Order;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 class HomeController extends Controller
 {
@@ -145,5 +147,58 @@ class HomeController extends Controller
         // Retrieve the total price from the query parameters
         $totalPrice = $request->query('totalprice');
         return view('home.stripe', compact('totalPrice'));
+    }
+
+    public function stripePost(Request $request)
+    {
+        $totalPrice = $request->input('totalPrice');
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        \Stripe\Charge::create ([
+                "amount" => $totalPrice * 100,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => "Thank you for payment"
+        ]);$userid = Auth::user()->id;
+        $cartItems = cart::where('user_id', $userid)->get(); // Get all cart items for the user
+
+        // Generate a unique track ID
+        $track_id = uniqid('tr');
+
+        foreach($cartItems as $cartItem){
+            $order = new order;
+
+            // Getting user data
+            $order->user_id = $userid;
+            $order->name = Auth::user()->name;
+            $order->email = Auth::user()->email;
+            $order->phone = Auth::user()->phone;
+            $order->address = Auth::user()->address;
+
+            // Getting product data
+            $order->product_id = $cartItem->product_id;
+            $order->product_title = $cartItem->product_title;
+            $order->price = $cartItem->price;
+            $order->quantity = $cartItem->quantity;
+            $order->image = $cartItem->image;
+
+            // Setting track ID for all items in this order
+            $order->track_id = $track_id;
+
+            // Status
+            $order->payment_status = 'paid';
+            $order->delivery_status = 'processing';
+
+            // Save the order
+            $order->save();
+
+            // Remove cart item
+            $cartItem->delete();
+        }
+
+        Session::flash('success', 'Payment successful!');
+
+        return view('home.thankyou', ['track_id' => $track_id]);
     }
 }

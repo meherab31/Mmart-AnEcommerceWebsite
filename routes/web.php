@@ -33,6 +33,7 @@ Route::post('/add_cart/{id}', [HomeController::class, 'add_cart']);
 Route::get('/show_cart', [HomeController::class, 'show_cart']);
 Route::get('/remove_cartitem/{id}', [HomeController::class, 'remove_cartitem']);
 Route::get('/cash_pay', [HomeController::class, 'cash_pay']);
-Route::get('/stripe_payment', [HomeController::class, 'stripePayment']);
 
+Route::get('/stripe_payment', [HomeController::class, 'stripePayment']);
+Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
 });

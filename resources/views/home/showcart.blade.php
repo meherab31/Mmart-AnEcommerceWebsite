@@ -129,7 +129,8 @@
                         Total Price : ${{ $totalprice }}
                     </h3>
                     <!-- Proceed to Checkout Button -->
-                    <button id="proceedCheckoutBtn" class="action-btn">Proceed to Checkout</button>
+                    <button id="proceedCheckoutBtn" class="action-btn" <?php echo count($cart) === 0 ? 'disabled' : ''; ?>>Proceed to Checkout</button>
+
                     <!-- Payment Options (Initially Hidden) -->
                     <div id="paymentOptions" style="display: none;">
                         <h3>Select Payment Method:</h3>
