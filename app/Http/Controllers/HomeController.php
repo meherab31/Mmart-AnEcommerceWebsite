@@ -21,7 +21,8 @@ class HomeController extends Controller
 
         if($usertype=='1')
         {
-            return view('admin.home');
+            $orders = Order::all();
+            return view('admin.home', compact('orders'));
         }
 
         else

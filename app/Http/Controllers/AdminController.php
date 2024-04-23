@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -86,4 +87,5 @@ class AdminController extends Controller
         $product->save();
         return redirect()->back()->with('productedited', 'Product Edited Succesffully');
     }
+
 }
