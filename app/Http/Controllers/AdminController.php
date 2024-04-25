@@ -88,4 +88,27 @@ class AdminController extends Controller
         return redirect()->back()->with('productedited', 'Product Edited Succesffully');
     }
 
+    public function orders($id){
+
+        $order = Order::find($id);
+        $order->delivery_status="delivered";
+        $order->payment_status="paid";
+        $order->save();
+        return view();
+    }
+
+    public function delivery($id){
+
+        $order = Order::find($id);
+        $order->delivery_status="delivered";
+        $order->payment_status="paid";
+        $order->save();
+        return redirect()->back();
+    }
+
+    public function showOrders(){
+        $orders = Order::all();
+        return view('admin.showorders', compact('orders'));
+    }
+
 }

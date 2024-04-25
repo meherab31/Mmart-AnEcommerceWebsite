@@ -35,5 +35,6 @@ Route::get('/remove_cartitem/{id}', [HomeController::class, 'remove_cartitem']);
 Route::get('/cash_pay', [HomeController::class, 'cash_pay']);
 Route::get('/stripe_payment', [HomeController::class, 'stripePayment']);
 Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
-
+Route::get('/show_orders', [AdminController::class, 'showOrders']);
+Route::get('/delivery/{id}', [AdminController::class, 'delivery']);
 });
