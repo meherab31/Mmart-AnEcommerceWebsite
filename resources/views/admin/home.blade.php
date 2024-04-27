@@ -43,7 +43,6 @@
       <div class="content-wrapper">
         <!-- Include the orders page -->
         @include('admin.orders', ['orders' => $orders])
-        @include('admin.body')
       </div>
     </div>
   </div>

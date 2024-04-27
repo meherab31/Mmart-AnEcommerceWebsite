@@ -202,4 +202,8 @@ class HomeController extends Controller
 
         return view('home.thankyou', ['track_id' => $track_id]);
     }
+
+    public function aboutUs(){
+        return view('home.aboutus');
+    }
 }

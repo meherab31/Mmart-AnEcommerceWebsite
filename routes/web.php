@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index']);
-
+Route::get('/about_us', [HomeController::class, 'aboutUs']);
 Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
 
 //

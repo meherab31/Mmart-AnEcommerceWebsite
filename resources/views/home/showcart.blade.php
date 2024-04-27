@@ -174,6 +174,8 @@
                             var totalPrice = <?php echo $totalprice; ?>;
                             // Redirect to stripe_payment route with total price as query parameter
                             window.location.href = selectedPayment + '?totalprice=' + totalPrice;
+                        } else if (selectedPayment === 'cash_pay') {
+                         window.location.href = '/cash_pay'; // Redirect to cash payment
                         } else {
                             alert('Please select a payment method.');
                         }
