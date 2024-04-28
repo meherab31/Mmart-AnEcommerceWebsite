@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -106,9 +107,15 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function showOrders(){
-        $orders = Order::all();
-        return view('admin.showorders', compact('orders'));
+    public function showOrders()
+    {
+        // Fetch the 15 most recent orders in descending order based on ID
+        $orders = Order::orderBy('id', 'desc')->paginate(15);
+        $totalQuantity = Order::sum('quantity');
+        $totalEarnings = Order::sum('price');
+
+        return view('admin.showorders', compact('orders', 'totalQuantity', 'totalEarnings'));
     }
+
 
 }

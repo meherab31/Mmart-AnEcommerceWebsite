@@ -3,30 +3,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   @include('admin.css')
+
   <style>
-    /* Custom CSS for responsiveness */
-    .container-scroller {
-      position: relative;
-      overflow-x: hidden;
-    }
 
-    .main-panel {
-      transition: width 0.25s ease, margin 0.25s ease;
-      min-height: calc(100vh - 70px);
-      padding-top: 20px;
-      width: 0%;
-    }
-
-
-    .content-wrapper {
-      background: #000000;
-      width: 100%;
-      overflow-x:auto;
-    }
-    .table-container{
-        background-color: #ffffff;
-    }
   </style>
 </head>
 <body>
@@ -42,11 +23,14 @@
       <!-- Main content wrapper -->
       <div class="content-wrapper">
         <!-- Include the orders page -->
-        @include('admin.orders', ['orders' => $orders])
+        @include('admin.body')
       </div>
     </div>
   </div>
   <!-- container-scroller -->
   @include('admin.js')
 </body>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

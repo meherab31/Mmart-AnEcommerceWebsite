@@ -31,11 +31,12 @@
                                     <input type="submit" value="Add to Cart" >
 
                                 </div>
+                                <a href="" class="option2" style="align-content: center">
+                                    Buy Now
+                                    </a>
                             </div>
                       </form>
-                      <a href="" class="option2">
-                      Buy Now
-                      </a>
+
                    </div>
                 </div>
                 <div class="img-box">
