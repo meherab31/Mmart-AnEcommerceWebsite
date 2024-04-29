@@ -40,6 +40,21 @@
       background-color: #fcfcfc; /* Set background color for active page */
       border-color: #ffffff; /* Set border color for active page */
     }
+    /* Styling for Sales Report button */
+    .sales-report-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -53,13 +68,12 @@
       <!-- partial -->
 
       <!-- Main content wrapper -->
+
       <div class="content-wrapper">
         <!-- Include the orders page -->
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-              </div>
               <div class="card-body">
                 <h1 class="text-center mt-4 mb-4">All Orders</h1>
                 <!-- Single search input field -->
@@ -144,7 +158,9 @@
                     <p>Total Earnings: ${{ $totalEarnings }}</p>
                     </div>
                 </div>
-
+                <button class="sales-report-btn" onclick="window.location.href='{{ route('sales_report') }}'">
+                    <i class="mdi mdi-file-download"></i> Download Sales Report
+                  </button>
               </div>
             </div>
           </div>

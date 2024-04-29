@@ -37,4 +37,5 @@ Route::get('/stripe_payment', [HomeController::class, 'stripePayment']);
 Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
 Route::get('/show_orders', [AdminController::class, 'showOrders']);
 Route::get('/delivery/{id}', [AdminController::class, 'delivery']);
+Route::get('/sales_report', [AdminController::class, 'downloadReport'])->name('sales_report');
 });

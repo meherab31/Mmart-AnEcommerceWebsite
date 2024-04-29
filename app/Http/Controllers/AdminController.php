@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
 
 class AdminController extends Controller
 {
@@ -117,5 +117,33 @@ class AdminController extends Controller
         return view('admin.showorders', compact('orders', 'totalQuantity', 'totalEarnings'));
     }
 
+    public function salesReport(){
+        $orders = order::all();
+        $totalQuantity = Order::sum('quantity');
+        $totalEarnings = Order::sum('price');
+
+        return view('admin.salesreport', compact('orders', 'totalQuantity', 'totalEarnings'));
+    }
+
+    public function downloadReport(){
+        $orders = Order::all();
+        $totalQuantity = Order::sum('quantity');
+        $totalEarnings = Order::sum('price');
+
+        // Create a Dompdf instance
+        $pdf = new Dompdf();
+
+        // Load HTML content into Dompdf
+        $pdf->loadHtml(view('admin.salesreport', compact('orders', 'totalQuantity', 'totalEarnings'))->render());
+
+        // Set paper size and orientation
+        $pdf->setPaper('A4', 'landscape');
+
+            // Render PDF
+            $pdf->render();
+
+        // Return the PDF as a downloadable response
+        return $pdf->stream('sales_report.pdf');
+    }
 
 }
