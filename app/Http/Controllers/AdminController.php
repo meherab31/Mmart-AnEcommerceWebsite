@@ -139,11 +139,33 @@ class AdminController extends Controller
         // Set paper size and orientation
         $pdf->setPaper('A4', 'landscape');
 
-            // Render PDF
-            $pdf->render();
+        // Render PDF
+        $pdf->render();
 
         // Return the PDF as a downloadable response
         return $pdf->stream('sales_report.pdf');
     }
+
+    //order reciept
+
+    public function orderReciept($id){
+
+        $order = Order::find($id);
+
+        // Customize the PDF file name based on order details
+        $filename = 'order_receipt_' . $order->name . '_' . $order->track_id . '.pdf';
+
+        // Create a Dompdf instance
+        $pdf = new Dompdf();
+
+        // Load HTML content into Dompdf
+        $pdf->loadHtml(view('admin.ordreciept', compact('order'))->render());
+
+        // Render the PDF
+        $pdf->render();
+
+        return $pdf->stream($filename);
+    }
+
 
 }

@@ -103,6 +103,7 @@
                           <th>Delivery Status</th>
                           <th>Track ID</th>
                           <th>Actions</th>
+                          <th>Reciept</th>
                         </tr>
                       </thead>
                       <!-- Table body -->
@@ -130,6 +131,10 @@
                             @else
                               <a class="btn btn-light btn-sm disabled" href="#">Delivered</a>
                             @endif
+                          </td>
+
+                          <td>
+                            <a href="{{ url('reciept', $order->id) }}" class="btn btn-info">Order Reciept</a>
                           </td>
                         </tr>
                         @endforeach

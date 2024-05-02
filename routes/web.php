@@ -39,4 +39,5 @@ Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post'
 Route::get('/show_orders', [AdminController::class, 'showOrders']);
 Route::get('/delivery/{id}', [AdminController::class, 'delivery']);
 Route::get('/sales_report', [AdminController::class, 'downloadReport'])->name('sales_report');
+Route::get('/reciept/{id}', [AdminController::class, 'orderReciept']);
 });
