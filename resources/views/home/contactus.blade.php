@@ -193,8 +193,55 @@
             color: #fff;
             font-weight: 400;
             line-height: 1.8;
-            margin-left: 60px;
+            margin-left: 40px;
         }
+
+        /* Custom CSS for FAQ page */
+        .faq-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item .question {
+            cursor: pointer;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            width: 100%;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+
+        .faq-item .question:hover {
+            background-color: #f0f0f0;
+        }
+
+        .faq-item .question:focus {
+            outline: none;
+        }
+
+        .faq-item .answer {
+            display: none;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .faq-item .answer.show {
+            display: block;
+        }
+
     </style>
 </head>
 
@@ -315,8 +362,39 @@
             <div class="map-info">
                 <p>We are located at the heart of the city. Feel free to drop by anytime during our working hours.</p>
             </div>
-            <!-- Replace the src attribute with your own Google Maps embed code -->
+            {{-- map embedded --}}
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82553.80858814444!2d90.40142842919498!3d23.87552410547819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c5d0466c6fef%3A0x2d131b534751974b!2s1230!5e0!3m2!1sen!2sbd!4v1714632817269!5m2!1sen!2sbd" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    {{-- faq section --}}
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button class="question" onclick="toggleAnswer(1)">Question 1: What are your shipping options?</button>
+                <div id="answer1" class="answer">
+                    <p>We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping delivers within 2-3 business days.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="question" onclick="toggleAnswer(2)">Question 2: What is your return policy?</button>
+                <div id="answer2" class="answer">
+                    <p>Our return policy allows you to return unworn and unwashed items within 30 days of purchase for a full refund or exchange.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="question" onclick="toggleAnswer(3)">Question 3: Do you offer international shipping?</button>
+                <div id="answer3" class="answer">
+                    <p>Yes, we offer international shipping to select countries. Shipping rates and delivery times may vary depending on the destination.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="question" onclick="toggleAnswer(4)">Question 4: How can I track my order?</button>
+                <div id="answer4" class="answer">
+                    <p>Once your order is shipped, you will receive a tracking number via email. You can use this tracking number to monitor the status of your shipment.</p</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -328,6 +406,12 @@
     <script src="home/js/popper.min.js"></script>
     <script src="home/js/bootstrap.js"></script>
     <script src="home/js/custom.js"></script>
+    <script>
+        function toggleAnswer(id) {
+            var answer = document.getElementById('answer' + id);
+            answer.classList.toggle('show');
+        }
+    </script>
 
 </body>
 
