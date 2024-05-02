@@ -1,38 +1,63 @@
 <!-- salesreport.blade.php -->
 <style>
     .tab_center {
-            padding-top: 20px;
-            margin: auto;
-            border: 2px solid white;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-family: 'Times New Roman';
-        }
-        .tab_center th,
-        .tab_center td {
-            border: 1px solid #08dbbfd5;
-            padding: 8px;
-            text-align: center;
-        }
-        .tr_bg{
-            background-color: #10a894;
-        }
-        .h1{
-            text-align: center;
-        }
+        padding-top: 20px;
+        margin: auto;
+        border: 2px solid white;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-family: 'Times New Roman';
+    }
 
+    .tab_center th,
+    .tab_center td {
+        border: 1px solid #08dbbfd5;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .tr_bg {
+        background-color: #10a894;
+    }
+
+    .h1 {
+        text-align: center;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 10px;
+    }
+
+    .grid-item1 {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .grid-item2 {
+
+        padding: 20px;
+        text-align: right;
+    }
 </style>
 
-<div class="row mt-4">
-    <div class="col">
-    <h3>Total Product Ordered: {{ $totalQuantity }}</p>
-    <h3>Total Earnings: ${{ $totalEarnings }}</p>
+<div class="grid-container">
+    <div class="row mt-4 grid-item1">
+        <div class="col">
+            <h3>Total Product Ordered: {{ $totalQuantity }}</p>
+                <h3>Total Earnings: ${{ $totalEarnings }}</p>
+        </div>
+    </div>
+    <div class="row mt-4 grid-item2">
+        <p id="datetime"></p>
     </div>
 </div>
+
 <h1 class="h1">Sales Report</h1>
 <div class="table-container"> <!-- Wrap the table in a container with overflow-x: auto -->
     <div class="table-responsive">
-        <table class="tab_center" >
+        <table class="tab_center">
             <!-- Table header -->
             <thead>
                 <tr class="tr_bg">
@@ -75,3 +100,13 @@
     </div>
 </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get current date and time
+        var now = new Date();
+        var datetime = now.toLocaleString();
+
+        // Insert date and time into HTML
+        document.getElementById("datetime").innerHTML = datetime;
+    });
+</script>

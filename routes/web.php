@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about_us', [HomeController::class, 'aboutUs']);
+Route::get('/contact_us', [HomeController::class, 'contactUs']);
 Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
 
 //
@@ -19,7 +20,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-Route::get('/redirect', [HomeController::class, 'redirect']);
+Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth', 'verified');
 Route::get('/view_category', [AdminController::class, 'view_category']);
 Route::post('/add_category', [AdminController::class, 'add_category']);
 Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
