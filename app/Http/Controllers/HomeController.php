@@ -21,8 +21,14 @@ class HomeController extends Controller
 
         if($usertype=='1')
         {
-            $orders = Order::all();
-            return view('admin.home', compact('orders'));
+            $orders = Order::all()->count();
+            $totalEarnings = Order::sum('price');
+            $totalProduct = Product::sum('quantity');
+            $users = User::all()->count();
+            $totalDelivered = Order::where('delivery_status', '=', 'delivered')->get()->count();
+            $pendingDelivery = Order::where('delivery_status', '=', 'processing')->get()->count();
+
+            return view('admin.home', compact('totalProduct', 'users','orders', 'totalEarnings','totalDelivered', 'pendingDelivery'));
         }
 
         else

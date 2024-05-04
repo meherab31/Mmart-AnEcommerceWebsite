@@ -57,7 +57,7 @@
     }
     .mt-4 {
     margin-top: 50px !important;
-}
+    }
   </style>
 </head>
 <body>
@@ -104,6 +104,7 @@
                           <th>Track ID</th>
                           <th>Actions</th>
                           <th>Reciept</th>
+                          <th>Send Email</th>
                         </tr>
                       </thead>
                       <!-- Table body -->
@@ -135,6 +136,10 @@
 
                           <td>
                             <a href="{{ url('reciept', $order->id) }}" class="btn btn-info">Order Reciept</a>
+                          </td>
+
+                          <td>
+                            <a href="{{ url('send_email', $order->id) }}" class="btn btn-primary">Send Email</a>
                           </td>
                         </tr>
                         @endforeach

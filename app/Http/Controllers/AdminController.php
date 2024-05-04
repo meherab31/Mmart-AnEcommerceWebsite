@@ -7,7 +7,8 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmailMail; // Import the Mailable class
 class AdminController extends Controller
 {
     public function view_category(){
@@ -165,6 +166,54 @@ class AdminController extends Controller
         $pdf->render();
 
         return $pdf->stream($filename);
+    }
+
+    public function sendEmail($id){
+
+        $order = Order::find($id);
+
+        return view('admin.sendemail', compact('order'));
+    }
+
+    public function sentEmail(Request $request, $orderId)
+    {
+        // Validate the form data
+        $request->validate([
+            'subject' => 'required',
+            'body' => 'required',
+            'attachment' => 'nullable|file|max:10240', // Maximum file size: 10MB
+        ]);
+
+        // Retrieve the order details from the database based on $orderId
+        $order = Order::find($orderId);
+
+        // Retrieve the email address from the form
+        $toEmail = $order->email;
+
+        // Retrieve the subject and body from the form
+        $subject = $request->input('subject');
+        $body = $request->input('body');
+
+        // Check if an attachment was provided
+        if ($request->hasFile('attachment')) {
+            $attachment = $request->file('attachment');
+
+            // Store the attachment in a directory
+            $attachmentPath = $attachment->store('attachments');
+
+            // Get the absolute path
+            $attachmentAbsolutePath = storage_path('app/' . $attachmentPath);
+        } else {
+            $attachmentPath = null;
+            $attachmentAbsolutePath = null;
+        }
+
+        // Send the email using the Mailable class
+        Mail::to($toEmail)->send(new SendEmailMail($subject, $body, $attachmentAbsolutePath));
+
+
+        // Redirect back with a success message
+        return back()->with('success', 'Email sent successfully.');
     }
 
 

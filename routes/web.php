@@ -20,7 +20,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth', 'verified');
+Route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth', 'verified')->name('admin_dash');
 Route::get('/view_category', [AdminController::class, 'view_category']);
 Route::post('/add_category', [AdminController::class, 'add_category']);
 Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
@@ -40,4 +40,7 @@ Route::get('/show_orders', [AdminController::class, 'showOrders']);
 Route::get('/delivery/{id}', [AdminController::class, 'delivery']);
 Route::get('/sales_report', [AdminController::class, 'downloadReport'])->name('sales_report');
 Route::get('/reciept/{id}', [AdminController::class, 'orderReciept']);
+Route::get('/send_email/{id}', [AdminController::class, 'sendEmail']);
+Route::post('/email_sent/{id}', [AdminController::class, 'sentEmail']);
+
 });
