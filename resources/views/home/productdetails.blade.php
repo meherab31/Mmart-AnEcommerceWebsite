@@ -67,13 +67,13 @@
 
                                         <div class="col-md-4" style="width: 50%" >
 
-                                            <input onclick="addToCart()" type="submit" value="Add to Cart" >
+                                            <input type="submit" value="Add to Cart" >
 
                                         </div>
                                     </div>
                             </form>
                         </div>
-                        <button class="btn btn-success" onclick="buyNow()">Buy Now</button>
+                        <button class="btn btn-success" >Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -89,16 +89,7 @@
     <script src="home/js/bootstrap.js"></script>
     <script src="home/js/custom.js"></script>
 
-    <!-- Add to Cart and Buy Now functionality -->
-    <script>
-        function addToCart() {
-            alert('Product added to cart!');
-        }
 
-        function buyNow() {
-            alert('Redirecting to checkout for immediate purchase!');
-        }
-    </script>
 </body>
 
 </html>
