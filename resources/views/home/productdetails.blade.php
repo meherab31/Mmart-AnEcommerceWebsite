@@ -24,12 +24,15 @@
     <link href="home/css/responsive.css" rel="stylesheet" />
 </head>
 
+<style>
+
+</style>
 <body>
     <!-- Header -->
     @include('home.header')
 
     <!-- Product Details -->
-    <div class="container mt-5">
+    <div class="container mt-5 color">
         <div class="row">
             <div class="col-lg-6">
                 <div class="product-image">
@@ -56,13 +59,13 @@
                     <!-- Add to Cart and Buy Now buttons -->
                     <div class="btn-container mt-3">
                         <div>
-                            <form action="{{ url('add_cart', $product->id) }}" method="POST">
+                            <form action="{{ url('add_cart', $product->id) }}" method="POST" id="buyNowForm">
                                 @csrf
                                     <div class="row">
                                         <div class="col-md-4" >
 
                                             <input type="number" name="quantity" value="1" min="1" style="width: 60%" >
-
+                                            <input type="hidden" name="buyNow" value="true">
                                         </div>
 
                                         <div class="col-md-4" style="width: 50%" >
@@ -70,10 +73,12 @@
                                             <input type="submit" value="Add to Cart" >
 
                                         </div>
+
                                     </div>
+                                    <button class="btn btn-success" onclick="submitForm()">Buy Now</button>
                             </form>
                         </div>
-                        <button class="btn btn-success" >Buy Now</button>
+                        {{-- <button class="btn btn-success" >Buy Now</button> --}}
                     </div>
                 </div>
             </div>
@@ -88,7 +93,11 @@
     <script src="home/js/popper.min.js"></script>
     <script src="home/js/bootstrap.js"></script>
     <script src="home/js/custom.js"></script>
-
+    <script>
+        function submitForm() {
+            document.getElementById('buyNowForm').submit();
+        }
+    </script>
 
 </body>
 

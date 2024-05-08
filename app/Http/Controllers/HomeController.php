@@ -83,6 +83,12 @@ class HomeController extends Controller
 
             $cart->save();
 
+            // Check if the "buyNow" parameter exists
+            if ($request->has('buyNow')) {
+                // Redirect to the cart page
+                return redirect()->route('show_cart');
+            }
+
             return redirect()->back()->with('cart', 'Product added to the cart');
         }
         else {
