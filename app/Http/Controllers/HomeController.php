@@ -222,4 +222,22 @@ class HomeController extends Controller
     public function contactUs(){
         return view('home.contactus');
     }
+
+    public function myOrders(){
+        $user = auth()->user();
+        $orders = Order::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        return view('home.myorders', compact('orders'));
+    }
+
+    public function cancelOrder($id){
+        $order= Order::find($id);
+
+        $order->delivery_status = 'cancelled';
+        $order->save();
+
+        return redirect()->back()->with('cancel', 'Your Order is Cancelled');
+    }
 }

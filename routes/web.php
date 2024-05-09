@@ -42,4 +42,6 @@ Route::middleware([
     Route::get('/reciept/{id}', [AdminController::class, 'orderReciept']);
     Route::get('/send_email/{id}', [AdminController::class, 'sendEmail']);
     Route::post('/email_sent/{id}', [AdminController::class, 'sentEmail']);
+    Route::get('/my_orders', [HomeController::class, 'myOrders']);
+    Route::get('/cancel_order/{id}', [HomeController::class, 'cancelOrder']);
 });

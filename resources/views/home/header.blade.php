@@ -41,6 +41,7 @@
                                 </form>
                             </li>
                             <li class="text-center"><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
+                            <li class="text-center"><a class="dropdown-item" href="{{ url('my_orders') }}">Orders</a></li>
                         </ul>
                     </li>
                     @else

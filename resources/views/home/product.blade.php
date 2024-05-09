@@ -34,9 +34,9 @@
 
                             </div>
                       </form>
-                      <a href="" class="option2" style="align-content: center">
+                      {{-- <a href="" class="option2" style="align-content: center">
                         Buy Now
-                      </a>
+                      </a> --}}
                    </div>
                 </div>
                 <div class="img-box">
