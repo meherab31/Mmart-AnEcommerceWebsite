@@ -113,7 +113,7 @@ class AdminController extends Controller
         // Fetch the 15 most recent orders in descending order based on ID
         $orders = Order::orderBy('id', 'desc')->paginate(15);
         $totalQuantity = Order::sum('quantity');
-        $totalEarnings = Order::sum('price');
+        $totalEarnings = Order::where('payment_status', 'paid')->sum('price');
 
         return view('admin.showorders', compact('orders', 'totalQuantity', 'totalEarnings'));
     }
@@ -121,7 +121,7 @@ class AdminController extends Controller
     public function salesReport(){
         $orders = order::all();
         $totalQuantity = Order::sum('quantity');
-        $totalEarnings = Order::sum('price');
+        $totalEarnings = Order::where('payment_status', 'paid')->sum('price');
 
         return view('admin.salesreport', compact('orders', 'totalQuantity', 'totalEarnings'));
     }
