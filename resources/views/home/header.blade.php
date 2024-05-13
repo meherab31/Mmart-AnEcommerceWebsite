@@ -10,8 +10,8 @@
                     <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item {{ Request::is('product') ? 'active' : '' }}">
-                        <a class="nav-link" href="product.html">Products</a>
+                    <li class="nav-item {{ Request::is('shop') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('shop')}}">Shop</a>
                     </li>
                     <li class="nav-item {{ Request::is('about_us') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('about_us')}}">About Us</a>

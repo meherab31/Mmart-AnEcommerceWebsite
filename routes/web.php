@@ -9,6 +9,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about_us', [HomeController::class, 'aboutUs']);
 Route::get('/contact_us', [HomeController::class, 'contactUs']);
 Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
+Route::get('/shop', [HomeController::class, 'shop']);
+Route::get('/shop/{category_name}', [HomeController::class, 'category']);
 
 //
 Route::middleware([
@@ -30,7 +32,7 @@ Route::middleware([
     Route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
     Route::get('/edit_product/{id}', [AdminController::class, 'edit_product']);
     Route::post('/product_edited/{id}', [AdminController::class, 'product_edited']); //product edit  from edit product
-    Route::post('/add_cart/{id}', [HomeController::class, 'add_cart']);
+    Route::post('/add_cart/{id}', [HomeController::class, 'add_cart'])->middleware('auth');
     Route::get('/show_cart', [HomeController::class, 'show_cart'])->name('show_cart');
     Route::get('/remove_cartitem/{id}', [HomeController::class, 'remove_cartitem']);
     Route::get('/cash_pay', [HomeController::class, 'cash_pay']);

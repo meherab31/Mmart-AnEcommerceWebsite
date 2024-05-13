@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Order;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
@@ -53,7 +54,7 @@ class HomeController extends Controller
     public function add_cart(Request $request, $id){
         if(Auth::id()) {
             $user=Auth::user();
-            $product=product::find($id);
+            $product=product::findOrFail($id);
             $cart= new cart;
 
             //getting user data
@@ -240,5 +241,11 @@ class HomeController extends Controller
         $order->save();
 
         return redirect()->back()->with('cancel', 'Your Order is Cancelled');
+    }
+
+    public function shop(){
+        $categories = Category::get();
+        $products = Product::get();
+        return view('home.shop', compact('categories', 'products'));
     }
 }
