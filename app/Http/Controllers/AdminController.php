@@ -105,7 +105,22 @@ class AdminController extends Controller
         $order->delivery_status="delivered";
         $order->payment_status="paid";
         $order->save();
-        return redirect()->back();
+
+        $product = Product::find($order->product_id);
+        // Check if the product quantity is sufficient
+        if ($product->quantity >= $order->quantity) {
+            // Reduce product quantity
+            $product->quantity -= $order->quantity;
+            $product->save();
+
+            // Check if product is out of stock
+            if ($product->quantity <= 0) {
+                $message = "Stock Out";
+            } else {
+                $message = "Product Delivered Successfully";
+            }
+        }
+        return redirect()->back()->with('message', $message);
     }
 
     public function showOrders()

@@ -59,9 +59,9 @@
     </div>
 
     <style>
-        .navbar{
+        /* .navbar{
             box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-            /* border-bottom: 1px solid rgba(0, 0, 0, 0.37); */
-        }
+            border-bottom: 1px solid rgba(0, 0, 0, 0.37);
+        } */
     </style>
 </header>
