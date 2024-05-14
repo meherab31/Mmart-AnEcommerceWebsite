@@ -67,7 +67,7 @@
                     </div>
                     <div>
                         <label>Product Quantity</label>
-                        <input required type="number" name="quantity" min="0" placeholder="Place Product Quantity">
+                        <input required type="number" name="quantity" min="1" oninput="validity.valid||(value='');" placeholder="Place Product Quantity">
                     </div>
                     <div>
                         <label>Product Category</label>
