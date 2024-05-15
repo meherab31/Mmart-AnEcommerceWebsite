@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
@@ -48,7 +49,8 @@ class HomeController extends Controller
 
     public function product_details($id){
         $product=Product::find($id);
-        return view('home.productdetails', compact('product'));
+        $averageRating = DB::table('reviews')->where('product_id', $product->id)->avg('rating');
+        return view('home.productdetails', compact('product', 'averageRating'));
     }
 
     public function add_cart(Request $request, $id){

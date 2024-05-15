@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 //No auth Needed
@@ -47,4 +48,7 @@ Route::middleware([
     Route::post('/email_sent/{id}', [AdminController::class, 'sentEmail']);
     Route::get('/my_orders', [HomeController::class, 'myOrders']);
     Route::get('/cancel_order/{id}', [HomeController::class, 'cancelOrder']);
+    Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->name('review.store')->middleware('auth');
+    Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy')->middleware('auth');
+
 });
