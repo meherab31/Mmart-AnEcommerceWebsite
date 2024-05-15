@@ -26,6 +26,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
+        .btn-primary {
+            color: #fff;
+            --bs-btn-bg: #007bff;
+            --bs-btn-border-color: #007bff;
+        }
+
+        .btn-success {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
         .panel {
             border: none;
             box-shadow: none;
@@ -202,13 +214,13 @@
 <body>
     <!-- Header -->
     @include('home.header')
-    @if(Session::has('cart'))
-    <div id="flash-message" class="alert alert-success" role="alert">
-        {{ Session::get('cart') }}
-        <button type="button" class="close" onclick="hideFlashMessage()">
-            <span>&times;</span>
-        </button>
-    </div>
+    @if (Session::has('cart'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+            {{ Session::get('cart') }}
+            <button type="button" class="close" onclick="hideFlashMessage()">
+                <span>&times;</span>
+            </button>
+        </div>
     @endif
     <div class="container bootdey">
         <div class="row">
@@ -379,4 +391,5 @@
         flashMessage.style.display = 'none';
     }
 </script>
+
 </html>
