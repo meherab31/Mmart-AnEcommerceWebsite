@@ -310,21 +310,6 @@
                 </section>
             </div>
             <div class="col-md-9">
-                {{-- <div>
-                    <section class="panel">
-                        <div class="panel-body">
-                            <div class="pull-right">
-                                <ul class="pagination pagination-sm pro-page-list">
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">»</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                </div> --}}
-
                 <div class="row product-list">
                     <!-- Product List -->
                     @foreach ($products as $product)

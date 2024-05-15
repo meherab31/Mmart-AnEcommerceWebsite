@@ -4,13 +4,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-
+//No auth Needed
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about_us', [HomeController::class, 'aboutUs']);
 Route::get('/contact_us', [HomeController::class, 'contactUs']);
 Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
 Route::get('/shop', [HomeController::class, 'shop']);
-Route::get('/shop/{category_name}', [HomeController::class, 'category']);
+Route::get('/shop/{category_name}', [HomeController::class, 'shop']);
 
 //
 Route::middleware([

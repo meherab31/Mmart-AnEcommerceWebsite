@@ -243,9 +243,24 @@ class HomeController extends Controller
         return redirect()->back()->with('cancel', 'Your Order is Cancelled');
     }
 
-    public function shop(){
-        $categories = Category::get();
-        $products = Product::get();
-        return view('home.shop', compact('categories', 'products'));
+    public function shop($category_name = null) {
+        $categories = Category::all();
+
+        // If category url is there, filter products by category
+        if ($category_name) {
+            $category = Category::where('category_name', $category_name)->first();
+
+            if ($category) {
+                $products = Product::where('category', $category_name)->get();
+                return view('home.shop', compact('products', 'categories'));
+            } else {
+                return redirect()->back()->with('error', 'Category not found');
+            }
+        }
+
+        // Generally fetch all products
+        $products = Product::all();
+        return view('home.shop', compact('products', 'categories'));
     }
+
 }
