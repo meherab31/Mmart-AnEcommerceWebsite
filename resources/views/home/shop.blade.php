@@ -22,14 +22,22 @@
     <link href="home/css/style.css" rel="stylesheet" />
     <!-- Responsive styles -->
     <link href="home/css/responsive.css" rel="stylesheet" />
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
+        .form-control.hasCustomSelect {
+            -webkit-appearance: menulist-button;
+            height: 34px;
+            font-size: 15px;
+        }
+
         .btn-primary {
             color: #fff;
-            --bs-btn-bg: #007bff;
-            --bs-btn-border-color: #007bff;
+            --bs-btn-bg: #F34954;
+            --bs-btn-border-color: #F34954;
         }
 
         .btn-success {
@@ -41,6 +49,7 @@
         .panel {
             border: none;
             box-shadow: none;
+            margin-bottom:
         }
 
         .panel-heading {
@@ -58,6 +67,65 @@
             font-family: 'Open Sans', sans-serif;
         }
 
+        .cat {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cat li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            /* Optional: Add some space between items */
+        }
+
+        .cat input[type="radio"] {
+            display: none;
+            /* Hide the original radio button */
+        }
+
+        .cat label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            /* Adjust font size as needed */
+            position: relative;
+        }
+
+        .cat label::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #F34954;
+            /* Customize the border color */
+            margin-right: 10px;
+            box-sizing: border-box;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .cat input[type="radio"]:checked+label::before {
+            background: #F34954;
+            /* Customize the fill color when selected */
+            border-color: #F34954;
+            /* Customize the border color when selected */
+        }
+
+        .cat input[type="radio"]:checked+label::after {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: white;
+            /* Inner circle color */
+            border-radius: 50%;
+            position: absolute;
+            left: 4px;
+            top: 4px;
+        }
 
         /*product list*/
 
@@ -206,6 +274,10 @@
             font-size: 18px;
             font-weight: 300;
         }
+
+        .sidebar {
+            background-color: #f190973a;
+        }
     </style>
 </head>
 
@@ -224,89 +296,64 @@
     @endif
     <div class="container bootdey">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 sidebar">
                 {{-- <section class="panel">
-                <div class="panel-body">
-                    <input type="text" placeholder="Keyword Search" class="form-control" />
-                </div>
-            </section> --}}
-                <section class="panel">
-                    <header class="panel-heading">
-                        Category
-                    </header>
-                    <div class="panel-body">
-                        @foreach ($categories as $category)
-                            <ul class="nav prod-cat">
-                                <li>
-                                    <a href="/shop/{{ $category->category_name }}">
-                                        <i class="fa fa-angle-right"></i> {{ $category->category_name }}
-                                    </a>
-                                </li>
-                            </ul>
-                        @endforeach
 
-                    </div>
-                </section>
+                </section> --}}
 
                 <section class="panel">
-                    <header class="panel-heading">
-                        Price Range
-                    </header>
-                    <div class="panel-body sliders">
-                        <div id="slider-range" class="slider"></div>
-                        <div class="slider-info">
-                            <span id="slider-range-amount"></span>
+                    <form action="{{ route('shop.filter') }}" method="GET" role="form product-form">
+                        <header class="panel-heading">
+                            Category
+                        </header>
+                        <div class="panel-body">
+                            @foreach ($categories as $category)
+                                <ul class="nav cat">
+                                    <li>
+                                        <input type="radio" name="category" value="{{ $category->category_name }}"
+                                            id="category{{ $category->id }}">
+                                        <label for="category{{ $category->id }}">{{ $category->category_name }}</label>
+                                    </li>
+                                </ul>
+                            @endforeach
+
                         </div>
-                    </div>
-                </section>
-                <section class="panel">
-                    <header class="panel-heading">
-                        Filter
-                    </header>
-                    <div class="panel-body">
-                        <form role="form product-form">
+                        <header class="panel-heading">
+                            Product Filters
+                        </header>
+                        <div class="panel-body">
+
+                            <!-- Sorting -->
+
                             <div class="form-group">
-                                <label>Brand</label>
-                                <select class="form-control hasCustomSelect"
-                                    style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                                    <option>Wallmart</option>
-                                    <option>Catseye</option>
-                                    <option>Moonsoon</option>
-                                    <option>Textmart</option>
+                                <select name="sort" class="form-control hasCustomSelect">
+                                    <option value="" selected disabled>Sort By</option>
+                                    <option value="title_asc">Title: A to Z</option>
+                                    <option value="title_desc">Title: Z to A</option>
+                                    <option value="price_asc">Price: Lowest to Highest</option>
+                                    <option value="price_desc">Price: Highest to Lowest</option>
                                 </select>
-                                <span class="customSelect form-control" style="display: inline-block;"><span
-                                        class="customSelectInner"
-                                        style="width: 209px; display: inline-block;">Wallmart</span></span>
                             </div>
-                            <div class="form-group">
-                                <label>Color</label>
-                                <select class="form-control hasCustomSelect"
-                                    style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                                    <option>White</option>
-                                    <option>Black</option>
-                                    <option>Red</option>
-                                    <option>Green</option>
-                                </select>
-                                <span class="customSelect form-control" style="display: inline-block;"><span
-                                        class="customSelectInner"
-                                        style="width: 209px; display: inline-block;">White</span></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Type</label>
-                                <select class="form-control hasCustomSelect"
-                                    style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                                    <option>Small</option>
-                                    <option>Medium</option>
-                                    <option>Large</option>
-                                    <option>Extra Large</option>
-                                </select>
-                                <span class="customSelect form-control" style="display: inline-block;"><span
-                                        class="customSelectInner"
-                                        style="width: 209px; display: inline-block;">Small</span></span>
-                            </div>
+
+                            <!-- Price Range -->
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    Price Range
+                                </header>
+                                <div class="panel-body sliders">
+                                    <div id="slider-range" class="slider"></div>
+                                    <div class="slider-info">
+                                        <span id="slider-range-amount"></span>
+                                    </div>
+                                    <input type="hidden" id="min_price" name="min_price">
+                                    <input type="hidden" id="max_price" name="max_price">
+                                </div>
+                            </section>
+
                             <button class="btn btn-primary" type="submit">Filter</button>
-                        </form>
-                    </div>
+                            <a href="{{ url('shop') }}" class="btn btn-secondary">Reset Filters</a>
+                        </div>
+                    </form>
                 </section>
             </div>
             <div class="col-md-9">
@@ -363,7 +410,7 @@
 <script src="home/js/popper.min.js"></script>
 <script src="home/js/bootstrap.js"></script>
 <script src="home/js/custom.js"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     // Function to hide the flash message after 3 seconds
     setTimeout(() => {
@@ -375,6 +422,29 @@
         const flashMessage = document.getElementById('flash-message');
         flashMessage.style.display = 'none';
     }
+</script>
+
+<script>
+    $(function() {
+        // Initialize the slider
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 100000,
+            values: [0, 0],
+            slide: function(event, ui) {
+                $("#slider-range-amount").text("$" + ui.values[0] + " - $" + ui.values[1]);
+                $("#min_price").val(ui.values[0]);
+                $("#max_price").val(ui.values[1]);
+            }
+        });
+
+        // Set initial values for display and hidden inputs
+        $("#slider-range-amount").text("$" + $("#slider-range").slider("values", 0) + " - $" + $(
+            "#slider-range").slider("values", 1));
+        $("#min_price").val($("#slider-range").slider("values", 0));
+        $("#max_price").val($("#slider-range").slider("values", 1));
+    });
 </script>
 
 </html>

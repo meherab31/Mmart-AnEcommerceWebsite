@@ -245,23 +245,35 @@ class HomeController extends Controller
         return redirect()->back()->with('cancel', 'Your Order is Cancelled');
     }
 
-    public function shop($category_name = null) {
+    public function shop(Request $request) {
         $categories = Category::all();
-
-        // If category url is there, filter products by category
-        if ($category_name) {
-            $category = Category::where('category_name', $category_name)->first();
-
-            if ($category) {
-                $products = Product::where('category', $category_name)->get();
-                return view('home.shop', compact('products', 'categories'));
-            } else {
-                return redirect()->back()->with('error', 'Category not found');
+        $products = Product::when($request->category, function($q) use($request) {
+            $q->where('category', $request->category);
+        })
+        ->when($request->sort, function($q) use($request) {
+            if($request->sort == 'title_asc')
+            {
+                $q->orderBy('title', 'asc');
             }
-        }
+            elseif($request->sort == 'title_desc')
+            {
+                $q->orderBy('title', 'desc');
+            }
+            elseif ($request->sort == 'price_asc')
+            {
+                $q->orderByRaw('IFNULL(discount_price, price) ASC');
+            }
+            elseif ($request->sort == 'price_desc')
+            {
+                $q->orderByRaw('IFNULL(discount_price, price) DESC');
+            }
+        })
 
-        // Generally fetch all products
-        $products = Product::all();
+        ->when($request->has('min_price') && $request->has('max_price') && $request->max_price != 0, function($q) use($request) {
+            $q->whereBetween('price', [$request->min_price, $request->max_price]);
+        })
+        ->get();
+
         return view('home.shop', compact('products', 'categories'));
     }
 

@@ -22,8 +22,9 @@
                     <li class="nav-item {{ Request::is('show_cart') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('show_cart') }}">Cart</a>
                     </li>
-                    <form class="form-inline">
-                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                    <form class="form-inline search-form">
+                        <input type="text" class="search-input" placeholder="Search...">
+                        <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
@@ -63,5 +64,37 @@
             box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
             border-bottom: 1px solid rgba(0, 0, 0, 0.37);
         } */
+        .search-form {
+            position: relative;
+        }
+
+        .search-input {
+            position: absolute;
+            right: 0;
+            width: 0;
+            opacity: 0;
+            transition: width 0.4s ease, opacity 0.4s ease;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-input:focus {
+            width: 200px;
+            opacity: 1;
+        }
+
+        .nav_search-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </header>
