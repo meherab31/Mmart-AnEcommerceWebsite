@@ -381,15 +381,15 @@
                                     </h4>
                                     @if ($product->discount_price != null)
                                         <p style="color:red">
-                                            ${{ $product->discount_price }}
+                                            ৳ {{ $product->discount_price }}
                                         </p>
 
                                         <p style="text-decoration: line-through; color:rgba(4, 34, 0, 0.829)">
-                                            ${{ $product->price }}
+                                            ৳ {{ $product->price }}
                                         </p>
                                     @else
                                         <p style="color:rgb(4, 34, 0)">
-                                            ${{ $product->price }}
+                                            ৳ {{ $product->price }}
                                         </p>
                                     @endif
                                 </div>

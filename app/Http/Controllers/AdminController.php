@@ -141,10 +141,22 @@ class AdminController extends Controller
         return view('admin.salesreport', compact('orders', 'totalQuantity', 'totalEarnings'));
     }
 
-    public function downloadReport(){
-        $orders = Order::all();
-        $totalQuantity = Order::sum('quantity');
-        $totalEarnings = Order::sum('price');
+    public function downloadReport(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        if ($startDate && $endDate) {
+            // Retrieve orders within the date range
+            $orders = Order::whereBetween('created_at', [$startDate, $endDate])->get();
+            $totalQuantity = $orders->sum('quantity');
+            $totalEarnings = $orders->sum('price');
+        } else {
+            // Retrieve all orders
+            $orders = Order::all();
+            $totalQuantity = $orders->sum('quantity');
+            $totalEarnings = $orders->sum('price');
+        }
 
         // Create a Dompdf instance
         $pdf = new Dompdf();

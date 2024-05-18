@@ -46,7 +46,7 @@
     <div class="row mt-4 grid-item1">
         <div class="col">
             <h3>Total Product Ordered: {{ $totalQuantity }}</p>
-                <h3>Total Earnings: ${{ $totalEarnings }}</p>
+                <h3>Total Earnings: ৳{{ $totalEarnings }}</p>
         </div>
     </div>
     <div class="row mt-4 grid-item2">

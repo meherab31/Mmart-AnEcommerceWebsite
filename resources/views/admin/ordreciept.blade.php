@@ -81,7 +81,7 @@
                 <tr>
                     <td>{{ $order->product_title }}</td>
                     <td>{{ $order->quantity }}</td>
-                    <td>${{ $order->price }}</td>
+                    <td>৳{{ $order->price }}</td>
                     <td>{{ $order->track_id }}</td>
                 </tr>
 

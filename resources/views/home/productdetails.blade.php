@@ -65,7 +65,7 @@
                     <div class="price">
                         <strong>
                             @if ($product->discount_price != null)
-                                <span style="color:red">${{ $product->discount_price }}</span>
+                                <span style="color:red">৳{{ $product->discount_price }}</span>
                                 <span
                                     style="text-decoration: line-through; color:rgba(4, 34, 0, 0.829)">{{ $product->price }}</span>
                             @else

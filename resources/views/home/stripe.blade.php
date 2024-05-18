@@ -168,7 +168,7 @@
                         <!-- Hidden input field for totalPrice -->
                         <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
                         <div class="form-group">
-                            <button class="btn btn-primary btn-lg btn-pay-now" type="submit">Pay Now (${{ $totalPrice }})</button>
+                            <button class="btn btn-primary btn-lg btn-pay-now" type="submit">Pay Now (৳{{ $totalPrice }})</button>
                         </div>
                     </form>
                 </div>

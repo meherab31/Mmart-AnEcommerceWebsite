@@ -66,6 +66,15 @@
         .mt-4 {
             margin-top: 50px !important;
         }
+        .sales-report-btn,
+        #date-range-form {
+            margin: 10px 0;
+        }
+
+        #date-range-form label,
+        #date-range-form input {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -135,7 +144,7 @@
                                                         <td>{{ $order->address }}</td>
                                                         <td>{{ $order->product_title }}</td>
                                                         <td>{{ $order->quantity }}</td>
-                                                        <td>${{ $order->price }}</td>
+                                                        <td>৳{{ $order->price }}</td>
                                                         <td>
                                                             <img src="/product/{{ $order->image }}" height="80px"
                                                                 width="80px">
@@ -198,10 +207,21 @@
                                         <p>Total Earnings: ${{ $totalEarnings }}</p>
                                     </div>
                                 </div>
-                                <button class="sales-report-btn"
-                                    onclick="window.location.href='{{ route('sales_report') }}'">
-                                    <i class="mdi mdi-file-download"></i> Download Sales Report
+                                <!-- Button to download the full sales report -->
+                                <button class="sales-report-btn" onclick="window.location.href='{{ route('sales_report') }}'">
+                                    <i class="mdi mdi-file-download"></i> Download Full Sales Report
                                 </button>
+
+                                <!-- Form to download the sales report by date range -->
+                                <form id="date-range-form" method="GET" action="{{ route('sales_report') }}">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" id="start_date" name="start_date" required>
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" id="end_date" name="end_date" required>
+                                    <button type="submit">
+                                        <i class="mdi mdi-file-download"></i> Download Sales Report by Date Range
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

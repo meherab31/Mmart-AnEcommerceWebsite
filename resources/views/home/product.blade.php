@@ -49,16 +49,16 @@
                    <br>
                    @if ($products->discount_price!=null)
                    <h6 style="color:red">
-                    ${{ $products->discount_price }}
+                    ৳{{ $products->discount_price }}
                    </h6>
 
                    <h6 style="text-decoration: line-through; color:rgba(4, 34, 0, 0.829)">
-                    ${{ $products->price }}
+                    ৳{{ $products->price }}
                    </h6>
 
                    @else
                    <h6 style="color:rgb(4, 34, 0)">
-                    ${{ $products->price }}
+                    ৳{{ $products->price }}
                    </h6>
                    @endif
                 </div>
