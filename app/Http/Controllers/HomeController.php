@@ -277,4 +277,20 @@ class HomeController extends Controller
         return view('home.shop', compact('products', 'categories'));
     }
 
+    public function search(Request $request)
+    {
+        $categories = Category::all();
+        $query = $request->input('query');
+
+        if ($request->ajax()) {
+            $products = Product::where('title', 'LIKE', "%{$query}%")->get();
+            return response()->json($products);
+        } else {
+            $products = Product::where('title', 'LIKE', "%{$query}%")->paginate(10);
+            return view('home.shop', compact('products', 'categories'));
+        }
+    }
+
+
+
 }

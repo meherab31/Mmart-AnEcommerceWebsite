@@ -10,8 +10,9 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about_us', [HomeController::class, 'aboutUs'])->name('about.us');
 Route::get('/contact_us', [HomeController::class, 'contactUs'])->name('contact.us');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
-// Route::get('/shop', [HomeController::class, 'shop']);
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop.filter');
+
+Route::get('/search', [HomeController::class, 'search'])->name('product.search');
 
 //
 Route::middleware([

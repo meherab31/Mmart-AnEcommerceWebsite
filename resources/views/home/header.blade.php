@@ -22,12 +22,19 @@
                     <li class="nav-item {{ Request::is('show_cart') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('show_cart') }}">Cart</a>
                     </li>
-                    <form class="form-inline search-form">
-                        <input type="text" class="search-input" placeholder="Search...">
-                        <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                    </form>
+                    <li class="nav-item">
+                        <form class="search-form" method="GET" action="{{ route('product.search') }}">
+                            <input type="text" name="query" id="search-input" class="search-input" placeholder="Search..." required="">
+                            <button class="btn nav_search-btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                                    <title>Search</title>
+                                    <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"></path>
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"></path>
+                                </svg>
+                            </button>
+                            <div id="suggestions" class="suggestions"></div>
+                        </form>
+                    </li>
                     @if (Route::has('login'))
                     @auth
                     <li class="nav-item dropdown">
@@ -60,28 +67,34 @@
     </div>
 
     <style>
-        /* .navbar{
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.37);
-        } */
-        .search-form {
+       .search-form {
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .search-input {
             position: absolute;
+            top: 100%;
             right: 0;
-            width: 0;
+            width: 100%;
+            max-height: 0;
             opacity: 0;
-            transition: width 0.4s ease, opacity 0.4s ease;
-            padding: 5px;
-            border: 1px solid #ccc;
+            transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+            padding: 0 10px;
+            border: 1px solid #d10f0f;
             border-radius: 5px;
+            background-color: #ffffff;
+            color: #000000;
+            outline: none;
+            z-index: 10;
         }
 
         .search-input:focus {
-            width: 200px;
+            max-height: 40px;
             opacity: 1;
+            width: 200px;
+            padding: 5px 10px;
         }
 
         .nav_search-btn {
@@ -90,11 +103,95 @@
             color: inherit;
             padding: 0;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .ionicon {
+            width: 24px;
+            height: 24px;
         }
 
         .form-inline {
             display: flex;
             align-items: center;
         }
+
+        .nav-item {
+            list-style: none;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestions {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 200%;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            display: none;
+        }
+
+        .suggestions a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .suggestions a:hover {
+            background-color: #f0f0f0;
+        }
     </style>
 </header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Handle input focus
+        $('.nav_search-btn').on('click', function() {
+            $('#search-input').focus();
+        });
+
+        // Handle input for suggestions
+        $('#search-input').on('input', function() {
+            var query = $(this).val();
+            if (query.length > 0) {
+                $.ajax({
+                    url: '{{ route("product.search") }}',
+                    method: 'GET',
+                    data: { query: query },
+                    success: function(data) {
+                        var suggestions = $('#suggestions');
+                        suggestions.empty();
+                        if (data.length > 0) {
+                            data.forEach(function(product) {
+                                suggestions.append('<a href="/product/' + product.id + '">' + product.title + '</a>');
+                            });
+                            suggestions.show();
+                        } else {
+                            suggestions.hide();
+                        }
+                    }
+                });
+            } else {
+                $('#suggestions').hide();
+            }
+        });
+
+        // Hide suggestions on clicking outside
+        $(document).click(function(event) {
+            if (!$(event.target).closest('.search-form').length) {
+                $('#suggestions').hide();
+            }
+        });
+    });
+</script>
