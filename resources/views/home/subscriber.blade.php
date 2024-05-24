@@ -7,12 +7,11 @@
                    <div class="heading_container heading_center">
                       <h3>Subscribe To Get Discount Offers</h3>
                    </div>
-                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                   <form action="">
-                      <input type="email" placeholder="Enter your email">
-                      <button>
-                      subscribe
-                      </button>
+                   <p>Don't miss out on our exclusive deals! Subscribe now to receive special discount offers and stay updated with the latest trends and collections. Enjoy savings on your favorite styles and be the first to know about our new arrivals. Sign up today and start shopping smarter!</p>
+                   <form action="{{ route('discount') }}" method="POST">
+                    @csrf
+                    <input type="email" name="email" placeholder="Enter your email">
+                    <button type="submit">subscribe</button>
                    </form>
                 </div>
              </div>

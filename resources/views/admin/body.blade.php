@@ -6,6 +6,9 @@
       overflow-x: hidden;
     } */
 
+    .text-muted, .preview-list .preview-item .preview-item-content p .content-category {
+    color: #ffffff !important;
+    }
     .main-panel {
       transition: width 0.25s ease, margin 0.25s ease;
       min-height: calc(100vh - 70px);

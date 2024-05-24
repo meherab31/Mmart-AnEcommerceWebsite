@@ -47,6 +47,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="product-details">
+                    <p></p>
                     <h2>{{ $product->title }}</h2>
 
                     <div class="average-rating">

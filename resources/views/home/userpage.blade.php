@@ -22,20 +22,27 @@
       <link href="home/css/responsive.css" rel="stylesheet" />
    </head>
    <body>
-        @if(Session::has('cart'))
-        <div id="flash-message" class="alert alert-success" role="alert">
-            {{ Session::get('cart') }}
-            <button type="button" class="close" onclick="hideFlashMessage()">
-                <span>&times;</span>
-            </button>
-        </div>
-        @endif
 
-      <div class="hero_area">
+
+     <div class="hero_area">
          <!-- header section strats -->
         @include('home.header')
          <!-- end header section -->
-
+         @if(Session::has('cart'))
+         <div id="flash-message" class="alert alert-success" role="alert">
+             {{ Session::get('cart') }}
+             <button type="button" class="close" onclick="hideFlashMessage()">
+                 <span>&times;</span>
+             </button>
+         </div>
+         @elseif (Session::has('discount'))
+         <div id="flash-message" class="alert alert-success" role="alert">
+             {{ Session::get('discount') }}
+             <button type="button" class="close" onclick="hideFlashMessage()">
+                 <span>&times;</span>
+             </button>
+         </div>
+         @endif
          <!-- slider section -->
          @include('home.slider')
          <!-- end slider section -->

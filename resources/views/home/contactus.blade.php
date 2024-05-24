@@ -248,7 +248,14 @@
 <body>
     <!-- Header -->
     @include('home.header')
-
+    @if (Session::has('contact'))
+        <div id="flash-message" class="alert alert-success" role="alert">
+            {{ Session::get('contact') }}
+            <button type="button" class="close" onclick="hideFlashMessage()">
+                <span>&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- Hero Area -->
     <section class="hero-area">
         <div class="container">
@@ -276,7 +283,8 @@
                                     <div id="form-message-success" class="mb-4">
                                         Please drop a message, we will reach you shortly
                                     </div>
-                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                    <form method="POST" action="{{ route('contact.submit') }}" id="contactForm" name="contactForm" class="contactForm">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -412,7 +420,18 @@
             answer.classList.toggle('show');
         }
     </script>
+    <script>
+        // Function to hide the flash message after 3 seconds
+        setTimeout(() => {
+            hideFlashMessage();
+        }, 1000);
 
+        // Function to hide the flash message
+        function hideFlashMessage() {
+            const flashMessage = document.getElementById('flash-message');
+            flashMessage.style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>

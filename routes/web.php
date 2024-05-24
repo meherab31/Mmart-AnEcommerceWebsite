@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 //No auth Needed
@@ -13,7 +14,8 @@ Route::get('/product_details/{id}', [HomeController::class, 'product_details']);
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop.filter');
 
 Route::get('/search', [HomeController::class, 'search'])->name('product.search');
-
+Route::post('/contact_submit', [ContactController::class, 'contactSubmit'])->name('contact.submit');
+Route::post('/discount', [ContactController::class, 'discount'])->name('discount');
 //
 Route::middleware([
     'auth:sanctum',
@@ -47,6 +49,7 @@ Route::middleware([
     Route::get('/reciept/{id}', [AdminController::class, 'orderReciept']);
     Route::get('/send_email/{id}', [AdminController::class, 'sendEmail']);
     Route::post('/email_sent/{id}', [AdminController::class, 'sentEmail']);
+    Route::get('/get_in_touch', [AdminController::class, 'getInTouch']);
     Route::get('/my_orders', [HomeController::class, 'myOrders']);
     Route::get('/cancel_order/{id}', [HomeController::class, 'cancelOrder']);
     Route::post('/product/{productId}/review', [ReviewController::class, 'store'])->name('review.store')->middleware('auth');

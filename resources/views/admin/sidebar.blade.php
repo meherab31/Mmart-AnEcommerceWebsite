@@ -95,5 +95,13 @@
           <span class="menu-title">Order Details</span>
         </a>
       </li>
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="{{ url ('get_in_touch') }}">
+          <span class="menu-icon">
+            <i class="mdi mdi-contact-mail"></i>
+          </span>
+          <span class="menu-title">Get in touch</span>
+        </a>
+      </li>
     </ul>
   </nav>

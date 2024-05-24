@@ -397,6 +397,24 @@
                         </div>
                     @endforeach
                 </div>
+                <!-- Pagination links -->
+                <div class="row">
+                    <div class="col">
+                        <!-- Pagination links -->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mt-4">
+                                {!! $products->links('pagination::bootstrap-4') !!}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <!-- Show results information -->
+                        <p class="text-center">Showing {{ $products->firstItem() }} to
+                            {{ $products->lastItem() }} of {{ $products->total() }} results</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

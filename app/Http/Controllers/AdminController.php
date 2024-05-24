@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmailMail; // Import the Mailable class
+
+
 class AdminController extends Controller
 {
     public function view_category(){
@@ -243,5 +246,8 @@ class AdminController extends Controller
         return back()->with('success', 'Email sent successfully.');
     }
 
-
+    public function getInTouch(){
+        $contacts = Contact::all();
+        return view('admin.getintouch', compact('contacts'));
+    }
 }

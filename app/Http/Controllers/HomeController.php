@@ -88,16 +88,20 @@ class HomeController extends Controller
             $cart->save();
 
             // Check if the "buyNow" parameter exists
-            if ($request->has('buyNow')) {
+            if ($request->has('buyNow'))
+            {
                 // Redirect to the cart page
                 return redirect()->route('show_cart');
             }
 
-            return redirect()->back()->with('cart', 'Product added to the cart');
+            else
+            {
+                return redirect()->back()->with('cart', 'Product added to the cart');
+            }
         }
         else {
 
-            return redirect()->route('login');//->with('warning', 'You need to log in to add products to your cart.');
+            return redirect()->route('login');
         }
     }
 
@@ -272,7 +276,7 @@ class HomeController extends Controller
         ->when($request->has('min_price') && $request->has('max_price') && $request->max_price != 0, function($q) use($request) {
             $q->whereBetween('price', [$request->min_price, $request->max_price]);
         })
-        ->get();
+        ->paginate(6);
 
         return view('home.shop', compact('products', 'categories'));
     }
