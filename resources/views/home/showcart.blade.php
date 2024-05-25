@@ -126,7 +126,7 @@
 
                 <div class="total-price">
                     <h3>
-                        Total Price : ${{ $totalprice }}
+                        Total Price : ৳{{ $totalprice }}
                     </h3>
                     <!-- Proceed to Checkout Button -->
                     <button id="proceedCheckoutBtn" class="action-btn" <?php echo count($cart) === 0 ? 'disabled' : ''; ?>>Proceed to Checkout</button>

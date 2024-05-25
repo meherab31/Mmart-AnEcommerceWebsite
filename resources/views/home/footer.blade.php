@@ -50,8 +50,11 @@
                       <form>
                          <fieldset>
                             <div class="field">
-                               <input type="email" placeholder="Enter Your Mail" name="email" />
-                               <input type="submit" value="Subscribe" />
+                                <form action="{{ route('discount') }}" method="POST">
+                                    @csrf
+                                    <input type="email" placeholder="Enter Your Mail" name="email" />
+                                    <input type="submit" value="Subscribe" />
+                                   </form>
                             </div>
                          </fieldset>
                       </form>

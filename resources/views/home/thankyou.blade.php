@@ -76,6 +76,7 @@
         <p>Your order has been successfully placed.</p>
         <p>Your tracking ID is: <span class="tracking-id">{{ $track_id }}</span></p>
         <p>We are preparing your items for shipment. You will receive an email with tracking information once your order has shipped.</p>
+        <p>To Track Order, Call: 01400705569</p>
         <a href="/" class="return-home-btn">Return to Home</a>
         <img src="/images/thank you.png" alt="Thank You Image" class="thank-you-img">
     </div>

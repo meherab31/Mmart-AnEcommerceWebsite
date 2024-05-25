@@ -124,7 +124,7 @@ class HomeController extends Controller
     public function cash_pay(){
         $userid = Auth::user()->id;
         $cartItems = cart::where('user_id', $userid)->get(); // Get all cart items for the user
-
+        $order = Order::get();
         // Generate a unique track ID
         $track_id = uniqid('tr');
 
